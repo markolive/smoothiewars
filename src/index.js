@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Day from "./pages/Day";
 import Trading from "./pages/Trading";
+import Weather from "./pages/Weather";
 import { ThemeProvider } from "@mui/material/styles";
 import { Stack } from "@mui/material";
 import createPurpleSmoothieTheme from "./theme/purpleSmoothieTheme";
@@ -20,8 +21,9 @@ export default function App() {
             <h1>Smoothie Wars</h1>
             <Routes>
               <Route path="/" element={<NewGame />} />
-              <Route path="Day" element={<Day />} />
-              <Route path="Trading" element={<Trading />}></Route>
+              <Route path="Trading/:dayNo/:playerNo" element={<Trading />}></Route>
+              <Route path="Day/:dayNo" element={<Day />} />
+              <Route path="Weather/:dayNo" element={<Weather />} />
             </Routes>
           </Stack>
         </ThemeProvider>

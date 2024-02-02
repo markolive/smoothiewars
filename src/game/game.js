@@ -1,20 +1,19 @@
-
 var game = {
   // Game variables
   players: [],
   days: [],
-  day: 1,
-};
-
-function setupGame(players, days) {
-  game.players = players;
-  game.days = days;
-  game.day = 1;
-  return game;
+  day: 0,
+  setupGame: function (players) {
+    this.players = players;
+  },
+  newDay: function (day) {
+    this.days.push(day);
+    this.day++;
+  },
 };
 
 function getGame() {
     return game;
 };
 
-export {setupGame, getGame};
+export {getGame};

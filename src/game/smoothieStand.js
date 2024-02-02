@@ -1,5 +1,6 @@
-const SmoothieStand = [
+const smoothieStand = [
   {
+    key: 0,
     name: "Beach",
     sales: [
       { day: 1, sales: 100 },
@@ -12,6 +13,7 @@ const SmoothieStand = [
     ],
   },
   {
+    key: 1,
     name: "City",
     sales: [
       { day: 1, sales: 100 },
@@ -24,6 +26,7 @@ const SmoothieStand = [
     ],
   },
   {
+    key: 2,
     name: "Park",
     sales: [
       { day: 1, sales: 100 },
@@ -36,6 +39,7 @@ const SmoothieStand = [
     ],
   },
   {
+    key: 3,
     name: "Residential",
     sales: [
       { day: 1, sales: 100 },
@@ -49,4 +53,4 @@ const SmoothieStand = [
   },
 ];
 
-export default SmoothieStand;
+export default smoothieStand;

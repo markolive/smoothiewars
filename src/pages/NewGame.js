@@ -3,24 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { getNumPlayers, NumPlayers } from "../NumPlayers";
 import { Button, Stack } from "@mui/material";
 import  setupPlayers  from "../game/players"
-import {setupGame}  from "../game/game";
-import newDay from "../game/day";
+import {getGame}  from "../game/game";
+import newGameDay from "../game/gameDay";
 
 function NewGame() {
   const navigate = useNavigate();
 
   function newGame() {
-    console.log("button cli cked");
+    console.log("button clicked");
     const numPlayers = getNumPlayers();
     const players = setupPlayers(numPlayers);
-    // create an array of 7 Day objects
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      days.push(newDay());
-    }
-  
-    setupGame(players,days);
-    navigate("/Day");
+    const game = getGame();
+    game.setupGame(players);
+    game.newDay(newGameDay());
+    navigate("/Day/1");
   }
   return (
     <Stack spacing={6} alignItems="center" justifyContent="space-evenly">
