@@ -17,6 +17,11 @@ const Day = () => {
   let { dayNo } = useParams();
   const game = getGame();
   console.log(game);
+  if (game.day < dayNo) {
+    console.log("Creating new day");
+    game.newDay(dayNo);
+  }
+  console.log(game);
   console.log("Day = ", dayNo);
 
   if (dayNo < 1 || dayNo > game.day) {

@@ -4,7 +4,9 @@ import { getNumPlayers, NumPlayers } from "../NumPlayers";
 import { Button, Stack } from "@mui/material";
 import  setupPlayers  from "../game/players"
 import {getGame}  from "../game/game";
-import newGameDay from "../game/gameDay";
+
+
+//import newGameDay from "../game/gameDay";
 
 function NewGame() {
   const navigate = useNavigate();
@@ -15,8 +17,8 @@ function NewGame() {
     const players = setupPlayers(numPlayers);
     const game = getGame();
     game.setupGame(players);
-    game.newDay(newGameDay());
-    navigate("/Day/1");
+    //game.newDay(newGameDay());
+    navigate("/Trading/1/1");
   }
   return (
     <Stack spacing={6} alignItems="center" justifyContent="space-evenly">

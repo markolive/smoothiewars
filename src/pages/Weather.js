@@ -30,14 +30,14 @@ const Weather = () => {
   function showLeaderBoard(dayNo) {
       return () => {
         console.log("Leaderboard button clicked");
-        navigate("/Trading/"+dayNo+"/1");
+        navigate("/Day/"+(dayNo));
       };
     }
 
     let { dayNo } = useParams();
     const game = getGame();
     //console.log(game);
-   console.log("Day = ", dayNo);
+   console.log("Day = ", game.days[dayNo-1].dayName);
     // display the game day
     if (dayNo<1 || dayNo>7 ) {  
         console.log("Day number out of range");
@@ -49,6 +49,7 @@ const Weather = () => {
     }
     return (
       <Stack spacing={6} alignItems="center" justifyContent="space-evenly">
+        <h2>It's {game.days[dayNo-1].dayName}</h2>
          <WheelComponent
       segments={segments}
       segColors={segColors}

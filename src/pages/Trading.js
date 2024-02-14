@@ -4,26 +4,49 @@ import { Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MenuItem, TextField, InputAdornment } from "@mui/material";
 import smoothieStand from "../game/smoothieStand";
+import {SmoothiePrice, getSmoothiePrice} from "../SmoothiePrice";
 import { useState } from "react";
 
 const Trading = () => {
   let { dayNo, playerNo } = useParams();
   const game = getGame();
+
+
+  console.log(game);
+  if (game.day < dayNo) {
+    console.log("Creating new day");
+    game.newDay(dayNo);
+  }
+  console.log(game);
+  console.log("Day = ", dayNo);
+
+
   const navigate = useNavigate();
+
   console.log(game);
   console.log("Trading day = ", dayNo);
   smoothieStand.map((it, index) => console.log(index, it.name));
-  const [numSmoothies, setNumSmoothies] = useState(game.players[playerNo - 1].balance);
+  const [numSmoothies, setNumSmoothies] = useState(game.players[playerNo - 1].numSmoothies);
+
+  function setPlayersTrade() {
+    game.players[playerNo - 1].numSmoothies = numSmoothies;
+    game.players[playerNo - 1].smoothieStand = smoothieStandSelected;
+    game.players[playerNo - 1].smoothiePrice = getSmoothiePrice();
+    setNumSmoothies(100);
+
+    console.log(game.players[playerNo - 1]);
+  }
 
   function nextPlayer() {
     console.log("Next Player button clicked");
+    setPlayersTrade();
     playerNo++;
     navigate("/Trading/" + dayNo + "/" + playerNo);
   }
 
   function weather() {
     console.log("Weather button clicked");
-    // your weather logic here
+    setPlayersTrade();
     navigate("/Weather/" + dayNo);
   }
 
@@ -36,12 +59,8 @@ const Trading = () => {
 
   function updateNumSmoothies(event) {
     console.log("NumSm "+event.target.value);
-    if (event.target.value>100) {
-      console.log("Error: You don't have enough money to buy that many smoothies");
-      setNumSmoothies( game.players[playerNo - 1].balance);
-    } else {
-      setNumSmoothies(event.target.value);
-    }
+    //var maxSmoothies = game.players[playerNo - 1].balance / game.smoothieStand[smoothieStandSelected].price;
+    setNumSmoothies(event.target.value);
   }
 
   return (
@@ -81,7 +100,7 @@ const Trading = () => {
         type="number"
       />
 
-      <TextField
+      {/* <TextField
         label="Price per Smoothie"
         InputProps={{
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -94,7 +113,10 @@ const Trading = () => {
         }}
         id="price-of-smoothies"
         type="number"
-      />
+      /> */}
+
+      <SmoothiePrice></SmoothiePrice>
+
       {playerNo < game.players.length ? (
         <Button onClick={nextPlayer} variant="contained">
           Next Player

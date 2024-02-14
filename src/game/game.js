@@ -1,3 +1,4 @@
+import { getDayName } from './gameDay'
 var game = {
   // Game variables
   players: [],
@@ -7,8 +8,9 @@ var game = {
     this.players = players;
   },
   newDay: function (day) {
-    this.days.push(day);
+    this.days.push({ day: day, dayName: getDayName(day), weather: 'sunny'});
     this.day++;
+    console.log(this.days);
   },
 };
 
